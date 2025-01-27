@@ -17,8 +17,8 @@ const App = () => {
     }
     const handleSubmit = (event) => {
         event.preventDefault();
-        setBooks(`Your new book is: ${newBook.title} ${newBook.author}`);
-        setnewBooks({ title: '', author: '' });
+        setBooks([...books, { title: newBook.title, author: newBook.author }]);
+        setnewBooks({ title: '', author: '' }); //Clear 
     }
     return (
         <>
@@ -43,18 +43,18 @@ const App = () => {
                             onChange={handleInputChange}
                         />
                         
-                        <button type="submit">Submit</button>
+                        <button type='submit'>Submit</button>
                       
                     </form>
                 </div>
                 <div className="bookCardsDiv">
                     <ul >
-                        {books.map((book) =>
-                            <li className='bookCard'>
+                        {books.map((book, index) => (
+                            <li className='bookCard' key={index}>
                                 <h3>{book.title}</h3>
                                 <p>{book.author}</p>
                             </li>
-                        )}
+                        ))}
                     </ul>
                 </div>
             </div>
